@@ -10,25 +10,50 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RedWizards</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="containers">
+            <div class="left-container">
+
             </div>
-        </nav>
+            <div class="right-container">
+                <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+                    <div class="container-fluid">
+                        <!-- Toggle button -->
+                        <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                            <i class="fas fa-bars"></i>
+                        </button>
+    
+                        <!-- Collapsible wrapper -->
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Voorstellingen</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Over ons</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Winkelwagen</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <svg class="loopyloop" width="1440" height="166" viewBox="0 0 1440 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M719.5 80L720.5 88L721.5 93L723.5 98L726 102.5L730 106L734 108L738.5 110L744 112L752 114L758.5 115.5L767.5 117.5L778.5 118.5H792.5L803 116.5L812.5 114L823 111L829.5 108.5L845.5 102.5L873 94L903 86.5L934.5 81.5L967 78.5L995.5 77.5L1028.5 78.5L1063.5 81.5L1089.5 86L1115.5 91L1164.5 99L1212.5 105L1246 103.5L1270.5 99L1300 89.5L1335.5 70L1375.5 31L1385.5 21L1400 12L1415.5 5L1430.5 0.5H1440V166H-3V105L719.5 80Z" fill="#E62B3C"/>
+        </svg>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,9 +62,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - RedWizards - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
