@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RedWizards.Models;
 using System.Diagnostics;
+using MySql.Data;
+using RedWizards.Database;
 
 namespace RedWizards.Controllers
 {
@@ -13,10 +15,23 @@ namespace RedWizards.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public List<PageContent> GetAllProducts()
         {
-            return View();
+            // alle info ophalen uit de database
+            var rows = DatabaseConnector.GetRows("select * from product");
+
+            // lijst maken om alles in te stoppen
+            List<PageContent> paginas = new List<PageContent>();
+
+            foreach (var row in rows)
+            {
+                // Voor elke rij een andere pagina
+                PageContent p = new PageContent();
+                p.Titel = row["titel"].ToString();
+                // GA HIER VERDER AAN DATABASE
+            }
         }
+
 
         public IActionResult Privacy()
         {
