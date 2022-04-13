@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using RedWizards.Database;
+@{
+    List<PageContent> nav = ViewData["navigation"] as List<PageContent>;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,10 +16,16 @@
     <header>
         <div class="containers">
             <div class="left-container">
-                <img class="container-img" />
+                @foreach (var pageContent in nav)
+                {
+                    <img class=container-img src="@pageContent.Image" alt="@pageContent.Titel"/>                    
+                }
             </div>
             <div class="right-container">
-                <h1>Welkom</h1>
+                @foreach (var pageContent in nav)
+                {
+                    <h1>@pageContent.Titel</h1>
+                }
                 <h2></h2>
             </div>
         </div>

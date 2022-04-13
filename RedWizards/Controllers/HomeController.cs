@@ -15,26 +15,43 @@ namespace RedWizards.Controllers
             _logger = logger;
         }
 
-        public List<PageContent> GetAllProducts()
+        public List<PageContent> GetAllPages()
         {
             // alle info ophalen uit de database
-            var rows = DatabaseConnector.GetRows("select * from product");
+            var rows = DatabaseConnector.GetRows("select * from `pagecontent`");
 
             // lijst maken om alles in te stoppen
-            List<PageContent> paginas = new List<PageContent>();
+            List<PageContent> pageContent = new List<PageContent>();
 
             foreach (var row in rows)
             {
                 // Voor elke rij een andere pagina
                 PageContent p = new PageContent();
                 p.Titel = row["titel"].ToString();
-                // GA HIER VERDER AAN DATABASE
+                p.Tekst = row["tekst"].ToString();
+                p.Image = row["image"].ToString();
+                p.Button = row["button"].ToString();
+                p.Date = row["date"].ToString();
+                p.Id = Convert.ToInt32(row["id"]);
+
+                pageContent.Add(p);
             }
+
+            return pageContent;
+        }
+
+        public IActionResult Index()
+        {
+            ViewData["navigation"] = GetAllPages();
+
+            return View();
         }
 
 
         public IActionResult Privacy()
         {
+            ViewData["navigation"] = GetAllPages();
+
             return View();
         }
 
