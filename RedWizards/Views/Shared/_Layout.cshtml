@@ -18,15 +18,15 @@
             <div class="left-container">
                 @foreach (var pageContent in nav)
                 {
-                    <img class=container-img src="@pageContent.Image" alt="@pageContent.Titel"/>                    
+                    <img class=container-img src="@pageContent.Image"/>
                 }
             </div>
             <div class="right-container">
                 @foreach (var pageContent in nav)
                 {
-                    <h1>@pageContent.Titel</h1>
+                    <h2 class=titel>@pageContent.Titel</h2>
+                    <p class=midtekst>@pageContent.Tekst</p>
                 }
-                <h2></h2>
             </div>
         </div>
         <svg class="loopyloop" width="1440" height="166" viewBox="0 0 1440 166" fill="none" xmlns="http://www.w3.org/2000/svg">
