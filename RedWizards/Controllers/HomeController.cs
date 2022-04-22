@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RedWizards.Database;
 using RedWizards.Models;
 using System.Diagnostics;
-using MySql.Data;
-using RedWizards.Database;
 
 namespace RedWizards.Controllers
 {
@@ -26,19 +25,13 @@ namespace RedWizards.Controllers
             foreach (var row in rows)
             {
                 // Voor elke rij een andere pagina
-                PageContent p = new PageContent();
-                p.Titel = row["titel"].ToString();
-                p.Tekst = row["tekst"].ToString();
-                p.Image = row["image"].ToString();
-                p.Button = row["button"].ToString();
-                p.Date = row["date"].ToString();
-                p.Id = Convert.ToInt32(row["id"]);
+                PageContent p = RowToPageContent(row);
 
                 pageContent.Add(p);
             }
 
             return pageContent;
-        }
+        }      
 
         public IActionResult Index()
         {
@@ -51,6 +44,67 @@ namespace RedWizards.Controllers
         public IActionResult Privacy()
         {
             ViewData["navigation"] = GetAllPages();
+
+            return View();
+        }
+
+        [Route("pagina/{id}")]
+        public IActionResult PageContent(int id)
+        {
+            var rows = DatabaseConnector.GetRows($"select * from pagecontent where id = {id}");
+
+            // lijst maken om alles in te stoppen
+            List<PageContent> pageContent = new List<PageContent>();
+
+            foreach (var row in rows)
+            {
+                // Voor elke rij een andere pagina
+                PageContent p = RowToPageContent(row);
+
+                pageContent.Add(p);
+            }
+
+            return View(pageContent[0]);
+        }
+
+        private static PageContent RowToPageContent(Dictionary<string, object> row)
+        {
+            PageContent p = new PageContent();
+            p.Titel = row["titel"].ToString();
+            p.Tekst = row["tekst"].ToString();
+            p.Image = row["image"].ToString();
+            p.Button = row["button"].ToString();
+            p.Date = row["date"].ToString();
+            p.Id = Convert.ToInt32(row["id"]);
+            return p;
+        }
+
+        [Route("voorstelling/{id}")]
+        public IActionResult Voorstellingen(int id)
+        {
+            var rows = DatabaseConnector.GetRows($"select * from voorstellingen where id = {id}");
+
+            // lijst maken om alles in te stoppen
+            List<Voorstelling> pageContent = new List<Voorstelling>();
+
+            foreach (var row in rows)
+            {
+                // Voor elke rij een andere pagina
+                Voorstelling p = new Voorstelling();
+                p.Categorie = row["categorie"].ToString();
+                p.Naam = row["naam"].ToString();
+                p.Datum = row["datum"].ToString();
+                p.Beschrijving_Kort = row["beschrijving_kort"].ToString();
+                p.Beschrijving_Lang = row["beschrijving_lang"].ToString();
+                p.Image = row["image"].ToString();
+                p.Minleeftijd = row["minleeftijd"].ToString();
+                p.Prijs_1erang = row["prijs_1erang"].ToString();
+                p.Prijs_2erang = row["prijs_2erang"].ToString();
+                p.Prijs_3erang = row["prijs_3erang"].ToString();
+                p.Id = Convert.ToInt32(row["id"]);
+
+                pageContent.Add(p);
+            }
 
             return View();
         }
