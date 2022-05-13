@@ -7,8 +7,14 @@
 .navbar {
     transition: all 0.5s;
     font-family: 'Rasa', serif;
-    display: flex;
-    justify-content: right;
+    display: flex;    
+    z-index: 100;
+}
+
+.navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    justify-content: space-around;
 }
 
 .navbar .nav-link {
@@ -63,6 +69,7 @@
     margin-right: initial;
     margin-left: initial;
 }
+
 .containers {
     position: absolute;
     width: 100%;
@@ -107,4 +114,7 @@ nav {
     top: 730px;
 }
 
-
+.rood {
+    color: #fff;
+    background-color: #E72B3A;
+}
