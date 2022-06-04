@@ -40,12 +40,45 @@ namespace RedWizards.Controllers
             return View();
         }
 
-
-        public IActionResult Privacy()
+        [Route("organisatie")]
+        public IActionResult Organisatie()
         {
             ViewData["navigation"] = GetAllPages();
 
             return View();
+        }
+
+        [Route("winkelwagen")]
+        public IActionResult Winkelwagen()
+        {
+            ViewData["navigation"] = GetAllPages();
+
+            return View();
+        }
+
+        [Route("vacatures")]
+        public IActionResult Vacatures()
+        {
+            ViewData["navigation"] = GetAllPages();
+
+            return View();
+        }
+
+        [Route("contact")]
+        public IActionResult Contact()
+        { 
+            ViewData["navigation"] = GetAllPages();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(Person person)
+        {
+            if (ModelState.IsValid)
+                return Redirect("#");
+
+            return View(person);
         }
 
         [Route("pagina/{id}")]
