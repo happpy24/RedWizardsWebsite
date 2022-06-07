@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/RedWizards.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @*HOOFDSTUK 1*@
     <header class="header">
             <nav class="navbar navbar-expand-lg py-3">
                 <div class="container">
@@ -29,12 +30,22 @@
                 </div>
             </nav>
     </header>
+    @*
+    <div class="overlay" id="divOne">
+        <div class="wrapper">
+            <h2>Login</h2>
+            <a href="#" class="close">&times;</a>
+            <div class="content"></div>
+        </div>
+    </div>
+    *@
     <div class="content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    @*VOETSTUK*@
     <div class="footer-dark">
         <footer>
             <div class="container">
@@ -61,11 +72,11 @@
                             <p>This webpage is ownership of Red Wizards.<br />Last updated: 3/6 2022</p>
                     </div>
                     <div class="col item social">
-                        <a href="#"><img src="~/img/icons/footerFacebook.png"></a>
-                        <a href="#"><img src="~/img/icons/footerInstagram.png"></a>
-                        <a href="#"><img src="~/img/icons/footerTiktok.png"></a>
-                        <a href="#"><img src="~/img/icons/footerTwitter.png"></a>
-                        <a href="#"><img src="~/img/icons/footerYoutube.png"></a>
+                        <a href="https://www.facebook.com"><img src="~/img/icons/footerFacebook.png"></a>
+                        <a href="https://www.instagram.com"><img src="~/img/icons/footerInstagram.png"></a>
+                        <a href="https://www.tiktok.com"><img src="~/img/icons/footerTiktok.png"></a>
+                        <a href="https://www.twitter.com/happpy24"><img src="~/img/icons/footerTwitter.png"></a>
+                        <a href="https://www.youtube.com/watch?v=t1JYx8cuZ8g"><img src="~/img/icons/footerYoutube.png"></a>
                     </div>
                 </div>
                   <p class="copyright">RedWizards - h24 &copy; 2022</p>

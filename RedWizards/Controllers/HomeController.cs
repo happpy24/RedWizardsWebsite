@@ -76,8 +76,8 @@ namespace RedWizards.Controllers
         public IActionResult Contact(Person person)
         {
             if (ModelState.IsValid)
-                return Redirect("#");
-
+                return Redirect("/vacatures");
+                
             return View(person);
         }
 

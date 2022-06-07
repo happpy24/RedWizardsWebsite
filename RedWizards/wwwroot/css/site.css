@@ -13,6 +13,18 @@ body {
     z-index: 5;
 }
 
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #E5E5E5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7e1920;
+}
+
 .navbar {
     transition: all 0.5s;
     font-family: 'Rasa', serif;
@@ -94,9 +106,10 @@ body {
 
 .nav-login {
     flex: 2;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     vertical-align: bottom;
+    padding: 10px;
 }
 
 .navbar.active .nav-login {
