@@ -73,11 +73,13 @@ namespace RedWizards.Controllers
         }
 
         [HttpPost]
+        [Route("contact")]
         public IActionResult Contact(Person person)
         {
-            if (ModelState.IsValid)
-                return Redirect("/vacatures");
-                
+            if (ModelState.IsValid) { 
+                DatabaseConnector.SavePerson(person);
+            }
+
             return View(person);
         }
 
