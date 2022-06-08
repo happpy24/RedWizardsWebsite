@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300;400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300;400;500&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -13,6 +13,11 @@ body {
     z-index: 5;
 }
 
+/*
+█▀ █▀▀ █▀█ █▀█ █░░ █░░ █▄▄ ▄▀█ █▀█
+▄█ █▄▄ █▀▄ █▄█ █▄▄ █▄▄ █▄█ █▀█ █▀▄
+*/
+
 ::-webkit-scrollbar {
     width: 7.5px;
 }
@@ -24,6 +29,11 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #7e1920;
 }
+
+/*
+█▄░█ ▄▀█ █░█ █▄▄ ▄▀█ █▀█
+█░▀█ █▀█ ▀▄▀ █▄█ █▀█ █▀▄
+*/
 
 .navbar {
     transition: all 0.5s;
@@ -49,11 +59,13 @@ body {
 .navbar .nav-link {
     color: #000;
     flex: 1;
+    font-size: 24px;
+    position: relative;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-    color: #000;
+    color: rgba(0, 0, 0, 0.6);
     text-decoration: none;
 }
 
@@ -117,6 +129,10 @@ body {
     filter: grayscale(1) invert(1);
 }
 
+/*
+█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █ █▄░█ █▀▀ █▀█ █▀
+█▄▄ █▄█ █░▀█ ░█░ █▀█ █ █░▀█ ██▄ █▀▄ ▄█
+*/
 .content {
     padding-right: initial;
     padding-left: initial;
@@ -149,12 +165,6 @@ body {
     flex: 1;
 }
 
-nav {
-    position: relative;
-    font-size: 24px;
-    font-family: 'Rasa', serif;
-}
-
 h2 {
     position: center;
     font-size: 64px;
@@ -178,6 +188,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     z-index: 5;
+    max-width: 600px;
 }
 
 .button {
@@ -232,6 +243,11 @@ h2 {
     text-align: center;
 }
 
+/*
+█░█ █▀█ █▀█ █▀█ █▀ ▀█▀ █▀▀ █░░ █░░ █ █▄░█ █▀▀ █▀▀ █▄░█
+▀▄▀ █▄█ █▄█ █▀▄ ▄█ ░█░ ██▄ █▄▄ █▄▄ █ █░▀█ █▄█ ██▄ █░▀█
+*/
+
 .voorstellingenplek {
     color: #fff;
     width: 100%;
@@ -269,6 +285,18 @@ h2 {
     margin-left: 70px;
 }
 
+.containerCoverImg {
+    max-height: 80%;
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 10px 10px rgb(0, 0, 0, 0.40);
+}
+
+/*
+█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀ █▀█ ▄▀█ █▀▀ █▀▀
+█▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░ █▀▀ █▀█ █▄█ ██▄
+*/
+
 .phone {
     width: 50%;
     height: 50%;
@@ -287,6 +315,11 @@ h2 {
     border: 6px solid #630C12;
 }
 
+/*
+█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀ █▀▀ █▀█ █▀█ █▀▄▀█
+█▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░ █▀░ █▄█ █▀▄ █░▀░█
+*/
+
 .form-style {
     max-width: 40%;
     background: #E5E5E5;
@@ -294,7 +327,7 @@ h2 {
     margin: 50px auto;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
-    border: 6px solid #630C12;
+    border: 4px solid #630C12;
 }
 
     .form-style ul {
@@ -363,9 +396,67 @@ h2 {
                 .form-style ul li input[type="submit"]:hover {
                     background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
                     background-color: #28739E;
-                }
+                 }
 
-/* FOOTER */
+.field-validation-error {
+    color: red;
+}
+
+/* The Modal (background) */
+.popupModel {
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.popupModal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 4px solid #630C12;
+    width: 30%;
+    font-size: 20px;
+}
+
+.popupModal-content ul {
+    list-style: none;
+}
+
+.popupModal-content ul li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em; 
+}
+
+/* The Close Button */
+.closeModel {
+    color: #999;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+    .closeModel:hover,
+    .closeModel:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/* 
+█▀▀ █▀█ █▀█ ▀█▀ █▀▀ █▀█
+█▀░ █▄█ █▄█ ░█░ ██▄ █▀▄
+*/
+
 .footer-dark {
     padding: 50px 500px;
     color: #fff;

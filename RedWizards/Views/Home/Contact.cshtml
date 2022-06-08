@@ -38,26 +38,72 @@
         <ul>
             <li>
                 <input type="text" name="name" class="field-style field-split align-left" placeholder="Naam" />
-                @Html.ValidationMessageFor(m => m.Name)
                 <input type="email" name="email" class="field-style field-split align-right" placeholder="Email" />
-                @Html.ValidationMessageFor(m => m.Email)
-
             </li>
             <li>
                 <input type="text" name="phone" class="field-style field-split align-left" placeholder="Telefoon" />
                 <input type="text" name="zipcode" class="field-style field-split align-right" placeholder="Postcode en Plaats" />
             </li>
             <li>
-                <input type="text" name="subject" class="field-style field-full align-none" placeholder="Onderwerp" />
-                @Html.ValidationMessageFor(m => m.Subject)
+                <input type="text" name="subject" class="field-style field-full align-none" placeholder="Onderwerp" /> 
             </li>
             <li>
                 <textarea name="message" class="field-style" placeholder="Bericht"></textarea>
-                @Html.ValidationMessageFor(m => m.Message)
             </li>
             <li>
-                <input type="submit" value="Verstuur" />
+                <input id="confirmButton" type="submit" value="Verstuur" />
             </li>
         </ul>
     </form>
 </div>
+
+
+@if (Model != null)
+{
+    @if (Model.Name == null || Model.Email == null || Model.Subject == null || Model.Message == null)
+    {
+        <div id="myModal" class="popupModel">
+            <div class="popupModal-content">
+                <span class="closeModel">&times;</span>
+                <p>Je bent vergeten iets in te vullen!</p>
+                <ul>
+                    @if (Model.Name == null)
+                    {
+                        <li>
+                            @Html.ValidationMessageFor(m => m.Name)
+                        </li>
+                    }
+                    @if (Model.Email == null)
+                    {
+                        <li>
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </li>
+                    }
+                    @if (Model.Subject == null)
+                    {
+                        <li>
+                            @Html.ValidationMessageFor(m => m.Subject)
+                        </li>
+                    }
+                    @if (Model.Message == null)
+                    {
+                        <li>
+                            @Html.ValidationMessageFor(m => m.Message)
+                        </li>
+                    }
+                </ul>            
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="myModal" class="popupModel">
+            <div class="popupModal-content">
+                <span class="closeModel">&times;</span>
+                <p>Dankjewel <b>@Model.Name</b> voor je bericht!</p>
+                <p>We zullen zo snel mogelijk contact met je opnemen.</p>
+            </div>
+        </div>
+    }
+
+}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using RedWizards.Database;
 using RedWizards.Models;
 using System.Diagnostics;
@@ -12,63 +13,34 @@ namespace RedWizards.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-
-        public List<PageContent> GetAllPages()
-        {
-            // alle info ophalen uit de database
-            var rows = DatabaseConnector.GetRows("select * from `pagecontent`");
-
-            // lijst maken om alles in te stoppen
-            List<PageContent> pageContent = new List<PageContent>();
-
-            foreach (var row in rows)
-            {
-                // Voor elke rij een andere pagina
-                PageContent p = RowToPageContent(row);
-
-                pageContent.Add(p);
-            }
-
-            return pageContent;
-        }      
+        }    
 
         public IActionResult Index()
         {
-            ViewData["navigation"] = GetAllPages();
-
             return View();
         }
 
         [Route("organisatie")]
         public IActionResult Organisatie()
         {
-            ViewData["navigation"] = GetAllPages();
-
             return View();
         }
 
         [Route("winkelwagen")]
         public IActionResult Winkelwagen()
         {
-            ViewData["navigation"] = GetAllPages();
-
             return View();
         }
 
         [Route("vacatures")]
         public IActionResult Vacatures()
         {
-            ViewData["navigation"] = GetAllPages();
-
             return View();
         }
 
         [Route("contact")]
         public IActionResult Contact()
         { 
-            ViewData["navigation"] = GetAllPages();
-
             return View();
         }
 
@@ -83,65 +55,41 @@ namespace RedWizards.Controllers
             return View(person);
         }
 
-        [Route("pagina/{id}")]
-        public IActionResult PageContent(int id)
+        public Voorstelling GetVoorstelling(int id)
         {
-            var rows = DatabaseConnector.GetRows($"select * from pagecontent where id = {id}");
+            // voorstelling ophalen uit de database op basis van het id
+            var rows = DatabaseConnector.GetRows($"select * from voorstellingen where id = {id}");
 
-            // lijst maken om alles in te stoppen
-            List<PageContent> pageContent = new List<PageContent>();
+            // We krijgen altijd een lijst terug maar er zou altijd één voorstelling in moeten
+            // zitten dus we pakken voor het gemak gewoon de eerste
+            Voorstelling voorstelling = GetVoorstellingFromRow(rows[0]);
 
-            foreach (var row in rows)
-            {
-                // Voor elke rij een andere pagina
-                PageContent p = RowToPageContent(row);
-
-                pageContent.Add(p);
-            }
-
-            return View(pageContent[0]);
+            // Als laatste sturen het product uit de lijst terug
+            return voorstelling;
         }
 
-        private static PageContent RowToPageContent(Dictionary<string, object> row)
+        private Voorstelling GetVoorstellingFromRow(Dictionary<string, object> row)
         {
-            PageContent p = new PageContent();
-            p.Titel = row["titel"].ToString();
-            p.Tekst = row["tekst"].ToString();
-            p.Image = row["image"].ToString();
-            p.Button = row["button"].ToString();
-            p.Date = row["date"].ToString();
-            p.Id = Convert.ToInt32(row["id"]);
-            return p;
+            Voorstelling v = new Voorstelling();
+            v.Name = row["name"].ToString();
+            v.Desc_Short = row["descShort"].ToString();
+            v.Desc_Long = row["descLong"].ToString();
+            v.Age = Convert.ToInt32(row["age"]);
+            v.Img = row["img"].ToString();
+            v.Date = row["date"].ToString();
+            v.Starting_Time = row["startingTime"].ToString();
+            v.Ending_Time = row["endingTime"].ToString();
+            v.Availability = Convert.ToInt32(row["availability"]);
+            v.Id = Convert.ToInt32(row["id"]);
+            return v;
         }
 
         [Route("voorstelling/{id}")]
-        public IActionResult Voorstellingen(int id)
+        public IActionResult VoorstellingDetails(int id)
         {
-            var rows = DatabaseConnector.GetRows($"select * from voorstellingen where id = {id}");
+            var voorstelling = GetVoorstelling(id);
 
-            // lijst maken om alles in te stoppen
-            List<Voorstelling> pageContent = new List<Voorstelling>();
-
-            foreach (var row in rows)
-            {
-                // Voor elke rij een andere pagina
-                Voorstelling p = new Voorstelling();
-                p.Categorie = row["categorie"].ToString();
-                p.Naam = row["naam"].ToString();
-                p.Datum = row["datum"].ToString();
-                p.Beschrijving_Kort = row["beschrijving_kort"].ToString();
-                p.Beschrijving_Lang = row["beschrijving_lang"].ToString();
-                p.Image = row["image"].ToString();
-                p.Minleeftijd = row["minleeftijd"].ToString();
-                p.Prijs_1erang = row["prijs_1erang"].ToString();
-                p.Prijs_2erang = row["prijs_2erang"].ToString();
-                p.Prijs_3erang = row["prijs_3erang"].ToString();
-                p.Id = Convert.ToInt32(row["id"]);
-
-                pageContent.Add(p);
-            }
-
-            return View();
+            return View(voorstelling);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
