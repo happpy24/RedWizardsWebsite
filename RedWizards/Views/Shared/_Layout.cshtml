@@ -1,7 +1,4 @@
 ﻿@using RedWizards.Database;
-@{
-    List<PageContent> nav = ViewData["navigation"] as List<PageContent>;
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RedWizards.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/img/favicon.ico" />
 </head>
 <body>
     @*HOOFDSTUK 1*@
@@ -24,21 +22,21 @@
                             <li class="nav-item"><a href="/Organisatie" class="nav-link">Over ons</a></li>
                             <li class="nav-item"><a href="/Winkelwagen" class="nav-link">Winkelwagen</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Search</a></li>
-                            <li class="nav-item nav-right"><a href="#"><img class="nav-login" src="~/img/icons/person.png"/></a></li>
+                            <li class="nav-item nav-right"><img class="nav-login" id="loginButton" src="~/img/icons/person.png"/></li>
                         </ul>
                     </div>
                 </div>
             </nav>
     </header>
-    @*
-    <div class="overlay" id="divOne">
-        <div class="wrapper">
-            <h2>Login</h2>
-            <a href="#" class="close">&times;</a>
-            <div class="content"></div>
+    
+    <div id="login" class="loginModel">
+        <div class="loginModel-content">
+            <span class="closeLoginModel">&times;</span>
+            <p>Je bent vergeten iets in te vullen!</p>
+                            
         </div>
     </div>
-    *@
+    
     <div class="content">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -48,39 +46,39 @@
     @*VOETSTUK*@
     <div class="footer-dark">
         <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 item">
-                        <h3>Over Red Wizards</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 item">
+                            <h3>Over Red Wizards</h3>
                             <ul>
                                 <li><a href="/Organisatie">Organisatie</a></li>
                                 <li><a href="#">Nieuws</a></li>
                                 <li><a href="/Vacatures">Vacatures</a></li>
                                 <li><a href="/Contact">Contact</a></li>
                             </ul>
-                    </div>
-                    <div class="col-md-3 item">
+                        </div>
+                        <div class="col-md-3 item">
                         <h3>Kaarten</h3>
                             <ul>
                                 <li>Leeftijd 3/9: €4,99</li>
                                 <li>Leeftijd 10/15: €7,99</li>
                                 <li>Leeftijd 16+: €11,99</li>
                             </ul>
-                    </div>
-                    <div class="col-md-3 item text">
-                          <h3>redwizards.com</h3>
+                        </div>
+                        <div class="col-md-3 item text">
+                            <h3>redwizards.com</h3>
                             <p>This webpage is ownership of Red Wizards.<br />Last updated: 3/6 2022</p>
+                        </div>
+                        <div class="col item social">
+                            <a href="https://www.facebook.com"><img src="~/img/icons/footerFacebook.png"></a>
+                            <a href="https://www.instagram.com"><img src="~/img/icons/footerInstagram.png"></a>
+                            <a href="https://www.tiktok.com"><img src="~/img/icons/footerTiktok.png"></a>
+                            <a href="https://www.twitter.com/happpy24"><img src="~/img/icons/footerTwitter.png"></a>
+                            <a href="https://www.youtube.com/watch?v=t1JYx8cuZ8g"><img src="~/img/icons/footerYoutube.png"></a>
+                        </div>
                     </div>
-                    <div class="col item social">
-                        <a href="https://www.facebook.com"><img src="~/img/icons/footerFacebook.png"></a>
-                        <a href="https://www.instagram.com"><img src="~/img/icons/footerInstagram.png"></a>
-                        <a href="https://www.tiktok.com"><img src="~/img/icons/footerTiktok.png"></a>
-                        <a href="https://www.twitter.com/happpy24"><img src="~/img/icons/footerTwitter.png"></a>
-                        <a href="https://www.youtube.com/watch?v=t1JYx8cuZ8g"><img src="~/img/icons/footerYoutube.png"></a>
-                    </div>
+                    <p class="copyright">RedWizards - h24 &copy; 2022</p>
                 </div>
-                  <p class="copyright">RedWizards - h24 &copy; 2022</p>
-            </div>
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -13,7 +13,7 @@ namespace RedWizards.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }    
+        }
 
         public IActionResult Index()
         {
@@ -40,7 +40,7 @@ namespace RedWizards.Controllers
 
         [Route("contact")]
         public IActionResult Contact()
-        { 
+        {
             return View();
         }
 
@@ -48,12 +48,30 @@ namespace RedWizards.Controllers
         [Route("contact")]
         public IActionResult Contact(Person person)
         {
-            if (ModelState.IsValid) { 
+            if (ModelState.IsValid)
+            {
                 DatabaseConnector.SavePerson(person);
             }
 
             return View(person);
         }
+
+        public List<Voorstelling> GetAllVoorstellingen()
+        {
+            var rows = DatabaseConnector.GetRows("select * from voorstellingen");
+
+            List<Voorstelling> voorstellingen = new List<Voorstelling>();
+
+            foreach (var row in rows)
+            {
+                Voorstelling v = GetVoorstellingFromRow(row);
+
+                voorstellingen.Add(v);
+            }
+
+            return voorstellingen;
+        }
+
 
         public Voorstelling GetVoorstelling(int id)
         {
@@ -62,11 +80,13 @@ namespace RedWizards.Controllers
 
             // We krijgen altijd een lijst terug maar er zou altijd één voorstelling in moeten
             // zitten dus we pakken voor het gemak gewoon de eerste
+            
             Voorstelling voorstelling = GetVoorstellingFromRow(rows[0]);
 
             // Als laatste sturen het product uit de lijst terug
             return voorstelling;
         }
+
 
         private Voorstelling GetVoorstellingFromRow(Dictionary<string, object> row)
         {
@@ -81,6 +101,7 @@ namespace RedWizards.Controllers
             v.Ending_Time = row["endingTime"].ToString();
             v.Availability = Convert.ToInt32(row["availability"]);
             v.Id = Convert.ToInt32(row["id"]);
+
             return v;
         }
 
@@ -92,10 +113,10 @@ namespace RedWizards.Controllers
             return View(voorstelling);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Route("404")]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

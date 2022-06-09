@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -144,6 +145,15 @@ body {
     flex-direction: row;
 }
 
+.loopyloop {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    pointer-events: none
+}
+
 .left-container {
     background-color: #E72B3A;
     height: 980px;
@@ -205,11 +215,13 @@ h2 {
     cursor: pointer;
     margin-left: 70px;
     z-index: 5;
+    transition: all .2s ease-in-out;
 }
 
-.button:hover {
-    color: white;
-}
+    .button:hover {
+        color: #c3c3c3;
+        transform: scale(1.05);
+    }
 
 .socialmedia {
     margin-left: 70px;
@@ -229,19 +241,65 @@ h2 {
     z-index: 5;
 }
 
-.loopyloop {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 388px;
-    pointer-events: none;
-}
-
 .bigtitle {
     font-size: 64px;
     color: #fff;
     text-align: center;
 }
+
+/* The Modal (background) */
+.loginModel {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.loginModel-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 4px solid #630C12;
+    width: 30%;
+    font-size: 20px;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+    .loginModel-content ul {
+        list-style: none;
+    }
+
+        .loginModel-content ul li::before {
+            content: "\2022";
+            color: red;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+/* The Close Button */
+.closeLoginModel {
+    color: #999;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+    .closeLoginModel:hover,
+    .closeLoginModel:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 /*
 █░█ █▀█ █▀█ █▀█ █▀ ▀█▀ █▀▀ █░░ █░░ █ █▄░█ █▀▀ █▀▀ █▄░█
@@ -255,26 +313,59 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
 }
 
 .voorstelling {
     background-color: #E5E5E5;
     color: #1b1f22;
-    width: 80%;
+    width: 70%;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
+    display: inline-flex;
 }
 
-.titleage {
-    display: flex;
-    justify-content: space-between;
+.voorstelling-table {
+    padding-left: 10px;
+    table-layout: fixed;
+    width: 70%;
+    margin-left: 60px;
+}
+
+.voorstelling-title {
+    font-size: 36px;
+    width: 60%;
+    font-weight: bold;
+}
+
+.voorstelling-age {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.voorstelling-content {
+    font-size: 24px;
+}
+
+.date {
+    font-size: 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.voorstelling-image {
+    width: 40%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 .ticketbutton {
     background-color: #E72B3A;
     border: none;
     color: white;
-    padding: 5px 24px;
+    padding: 5px 40%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -282,8 +373,13 @@ h2 {
     border-radius: 30px;
     margin: 4px 2px;
     cursor: pointer;
-    margin-left: 70px;
+    transition: all .2s ease-in-out;
 }
+
+    .ticketbutton:hover {
+        color: #c3c3c3;
+        transform: scale(1.05);
+    }
 
 .containerCoverImg {
     max-height: 80%;
@@ -292,11 +388,106 @@ h2 {
     box-shadow: 10px 10px rgb(0, 0, 0, 0.40);
 }
 
+.voorstellingPageTable {
+    margin-top: 350px;
+    margin-left: 70px;
+    z-index: 5;
+    max-width: 80%;
+}
+
+.movie-container {
+    margin: 20px 0;
+}
+
+    .movie-container select {
+        background-color: #7B0D1E;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        font-size: 0.7vw;
+        margin-left: 10px;
+        padding: 5px 15px 5px 15px;
+        border: 2px solid #000000;
+        height: 3vw;
+        width: 10vw;
+    }
+
+        .movie-container select option {
+            background-color: #ddd;
+            color: black;
+            border: 0;
+            border-radius: 500px;
+            font-size: 14px;
+            margin-left: 10px;
+            padding: 5px 15px 5px 15px;
+        }
+
+.seat {
+    background-color: #444451;
+    height: 4vw;
+    width: 4.8vw;
+    margin: 1vw;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+    .seat.selected {
+        background-color: #6feaf6;
+    }
+
+    .seat.occupied {
+        background-color: #fff;
+    }
+
+    .seat:nth-of-type(2) {
+        margin-right: 18px;
+    }
+
+    .seat:nth-last-of-type(2) {
+        margin-left: 18px;
+    }
+
+    .seat:not(.occupied):hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+
+.showcase .seat:not(.occupied):hover {
+    cursor: default;
+    transform: scale(1);
+}
+
+.showcase {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .showcase li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+    }
+
+        .showcase li small {
+            margin-left: 2px;
+        }
+
+.rij {
+    display: flex;
+    justify-content: center;
+}
+
+
 /*
 █▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀ █▀█ ▄▀█ █▀▀ █▀▀
 █▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░ █▀▀ █▀█ █▄█ ██▄
 */
-
 .phone {
     width: 50%;
     height: 50%;
@@ -390,13 +581,15 @@ h2 {
                 border-radius: 20px;
                 padding: 8px 50px;
                 text-decoration: none;
+                transition: all .2s ease-in-out;
             }
 
                 .form-style ul li input[type="button"]:hover,
                 .form-style ul li input[type="submit"]:hover {
                     background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
                     background-color: #28739E;
-                 }
+                    transform: scale(1.05);
+                }
 
 .field-validation-error {
     color: red;
@@ -423,6 +616,8 @@ h2 {
     border: 4px solid #630C12;
     width: 30%;
     font-size: 20px;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
 .popupModal-content ul {
@@ -452,6 +647,19 @@ h2 {
         text-decoration: none;
         cursor: pointer;
     }
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
 /* 
 █▀▀ █▀█ █▀█ ▀█▀ █▀▀ █▀█
 █▀░ █▄█ █▄█ ░█░ ██▄ █▀▄
