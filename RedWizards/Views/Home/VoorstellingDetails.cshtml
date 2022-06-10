@@ -3,9 +3,10 @@
 @{
     ViewData["Title"] = "Voorstelling";
 }
-
+@if (Model != null)
+{
 <div class="containers">
-    <div class="left-container">
+    <div class="left-container">  
         <img class="containerCoverImg" src=@Model.Img alt=@Model.Name/>
     </div>
     <div class="right-container">
@@ -89,6 +90,9 @@
     <p class="text">Je hebt <span id="count">0</span> stoelen geselecteerd voor een prijs van <span id="total">0</span> euro</p>
 
     <a class=ticketbutton href="tickets/betalen">Ga door naar het betalen--></a>
-
+    <script src="/js/script.js"></script>
     </div>
 </div>
+} else {
+    <meta http-equiv='refresh' content='0; URL=http://localhost:41493/404'>
+}

@@ -82,7 +82,9 @@ namespace RedWizards.Controllers
 
             // We krijgen altijd een lijst terug maar er zou altijd één voorstelling in moeten
             // zitten dus we pakken voor het gemak gewoon de eerste
-            
+            if (!rows.Any())
+                return null;
+
             Voorstelling voorstelling = GetVoorstellingFromRow(rows[0]);
 
             // Als laatste sturen het product uit de lijst terug
@@ -111,6 +113,9 @@ namespace RedWizards.Controllers
         public IActionResult VoorstellingDetails(int id)
         {
             var voorstelling = GetVoorstelling(id);
+
+            if(voorstelling == null)
+                return Error();
 
             return View(voorstelling);
         }
