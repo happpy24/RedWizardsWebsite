@@ -46,6 +46,12 @@ namespace RedWizards.Controllers
             return View();
         }
 
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         [Route("contact")]
         public IActionResult Contact(Person person)

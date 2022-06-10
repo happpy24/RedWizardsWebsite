@@ -13,34 +13,55 @@ $(function () {
     });
 });
 
-var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("closeModel")[0];
+try {
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("closeModel")[0];
 
-window.onclick = function (event) {
-    if (event.target == modal) {
+    span.onclick = function () {
         modal.style.display = "none";
     }
-}
 
-// Get the modal
-var modal1 = document.getElementById("loginModel");
-var btn = document.getElementById("loginButton");
-var span1 = document.getElementsByClassName("closeLoginModel")[0];
-
-btn.onclick = function () {
-    modal1.style.display = "block";
-}
-
-span1.onclick = function () {
-    modal1.style.display = "none";
-}
-
-window.onclick = function (event) {
-    if (event.target == modal1) {
-        modal1.style.display = "none";
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
+} catch { }
+
+ // Get the modal
+ var modal1 = document.getElementById("loginModel");
+ var span1 = document.getElementsByClassName("closeLoginModel")[0];
+
+ function block() {
+     modal1.style.display = "block";
+ }
+
+ span1.onclick = function () {
+     modal1.style.display = "none";
+ }
+
+ window.onclick = function (event) {
+     if (event.target == modal1) {
+         modal1.style.display = "none";
+     }
+ }
+
+// Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    const redwizards = { lat: 51.92780685424805, lng: 4.476498603820801 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 18,
+        center: redwizards,
+        mapId: '8aca3da93b28cd03',
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+        position: redwizards,
+        map: map,
+    });
 }
+
+window.initMap = initMap;

@@ -26,10 +26,15 @@ namespace RedWizards
         {
             services.AddDistributedMemoryCache();
 
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(21600);
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
         }
 
 
@@ -69,11 +74,6 @@ namespace RedWizards
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
         }
-
     }
-
-
 }
