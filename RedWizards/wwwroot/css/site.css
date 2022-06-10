@@ -774,6 +774,18 @@ h2 {
     margin-bottom: 0;
 }
 
+.smurf {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 10s ease-in-out;
+}
+
+.smurf:hover {
+    transform: rotate(10000deg);
+}
+
 .spelletjes {
     display: flex;
     flex-direction: column;
