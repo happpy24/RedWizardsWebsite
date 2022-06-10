@@ -17,7 +17,9 @@ namespace RedWizards.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var voorstellingen = GetAllVoorstellingen();
+
+            return View(voorstellingen);
         }
 
         [Route("organisatie")]
@@ -96,7 +98,7 @@ namespace RedWizards.Controllers
             v.Desc_Long = row["descLong"].ToString();
             v.Age = Convert.ToInt32(row["age"]);
             v.Img = row["img"].ToString();
-            v.Date = row["date"].ToString();
+            v.Date = DateTime.Parse(row["date"].ToString());
             v.Starting_Time = row["startingTime"].ToString();
             v.Ending_Time = row["endingTime"].ToString();
             v.Availability = Convert.ToInt32(row["availability"]);

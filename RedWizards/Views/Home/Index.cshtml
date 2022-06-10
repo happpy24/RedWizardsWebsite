@@ -24,118 +24,23 @@
 
 <h1 class="bigtitle" id="voorstellingen">Voorstellingen</h1>
 <div class="voorstellingenplek">
-    <div class="voorstelling">
-        <table class="voorstelling-table"> 
-            <tr>
-                <th class="voorstelling-title">Knuffel van de Sint</th>
-                <th class="voorstelling-age">3+</th>
-            </tr>
-            <tr>
-                <td class="voorstelling-content" colspan="2">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</td>
-            </tr>
-            <tr>
-                <td colspan="2"><a class="ticketbutton" href="/voorstelling/1">Meer info</a></td>
-                <td class="date">2022-12-05</td>
-            </tr>
-        </table>
-        <img class="voorstelling-image" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-
-    <div class="voorstelling">
-        <table class="voorstelling-table"> 
-            <tr>
-                <th class="voorstelling-title">Knuffel van de Sint</th>
-                <th class="voorstelling-age">3+</th>
-            </tr>
-            <tr>
-                <td class="voorstelling-content" colspan="2">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</td>
-            </tr>
-            <tr>
-                <td colspan="2"><a class="ticketbutton" href="/voorstelling/1">Meer info</a></td>
-                <td class="date">2022-12-05</td>
-            </tr>
-        </table>
-        <img class="voorstelling-image" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-
-    <div class="voorstelling">
-        <table class="voorstelling-table"> 
-            <tr>
-                <th class="voorstelling-title">Knuffel van de Sint</th>
-                <th class="voorstelling-age">3+</th>
-            </tr>
-            <tr>
-                <td class="voorstelling-content" colspan="2">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</td>
-            </tr>
-            <tr>
-                <td colspan="2"><a class="ticketbutton" href="/voorstelling/1">Meer info</a></td>
-                <td class="date">2022-12-05</td>
-            </tr>
-        </table>
-        <img class="voorstelling-image" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-
-    <div class="voorstelling">
-        <table class="voorstelling-table"> 
-            <tr>
-                <th class="voorstelling-title">Knuffel van de Sint</th>
-                <th class="voorstelling-age">3+</th>
-            </tr>
-            <tr>
-                <td class="voorstelling-content" colspan="2">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</td>
-            </tr>
-            <tr>
-                <td colspan="2"><a class="ticketbutton" href="/voorstelling/1">Meer info</a></td>
-                <td class="date">2022-12-05</td>
-            </tr>
-        </table>
-        <img class="voorstelling-image" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-
-    <div class="voorstelling">
-        <table class="voorstelling-table"> 
-            <tr>
-                <th class="voorstelling-title">Knuffel van de Sint</th>
-                <th class="voorstelling-age">3+</th>
-            </tr>
-            <tr>
-                <td class="voorstelling-content" colspan="2">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</td>
-            </tr>
-            <tr>
-                <td colspan="2"><a class="ticketbutton" href="/voorstelling/1">Meer info</a></td>
-                <td class="date">2022-12-05</td>
-            </tr>
-        </table>
-        <img class="voorstelling-image" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-    @*
-    <div class="voorstelling">
-        <div class="titleage">
-            <h1>Knuffel van de Sint</h1>
-            <h4>3+</h4>
-        </div>
-        <p class="voorstellingcontent">Trek lekker je pyjama of je onesie aan, want deze keer wordt de Sint Sing Along een heuse pyjama party!</p>
-        <div class="bottomvoorstelling">
-            <a class="ticketbutton" href="#">Meer info</a>
-            <p class="date">2022-12-05</p>
-        </div>
-        <img class="voorstellingimage" src="http://localhost:41493/img/voorstellingen/sintsingalong.png"/>
-    </div>
-    *@
-
-    @*@foreach (Voorstelling v in Model)
+    @foreach (Voorstelling v in Model)
     {
         <div class="voorstelling">
-            <div class="titleage">
-                <h1>@v.Name</h1>
-                <h4>@v.Age</h4>
-            </div>
-            <p class="voorstellingcontent">@v.Desc_Short</p>
-            <div class="bottomvoorstelling">
-                <a class="ticketbutton" href="#">Meer info</a>
-                <p class="date">@v.Date</p>
-                <img class="voorstellingimage" src="@v.Img"/>
-            </div>
+            <table class="voorstelling-table"> 
+                <tr>
+                    <th class="voorstelling-title">@v.Name</th>
+                    <th class="voorstelling-age">@v.Age+</th>
+                </tr>
+                <tr>
+                    <td class="voorstelling-content" colspan="2">@v.Desc_Short</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a class="ticketbutton" href="/voorstelling/@v.Id">Meer info</a></td>
+                    <td class="date">@v.Date.ToString("d")</td>
+                </tr>
+            </table>
+            <img class="voorstelling-image" src="@v.Img"/>
         </div>
-    }*@
+    }
 </div>

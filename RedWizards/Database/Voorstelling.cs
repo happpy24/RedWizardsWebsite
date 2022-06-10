@@ -14,7 +14,7 @@
 
         public string? Img { get; set; }
 
-        public string? Date { get; set; }
+        public DateTime Date { get; set; }
 
         public string? Starting_Time { get; set; }
 

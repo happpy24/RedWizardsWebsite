@@ -150,7 +150,7 @@ body {
     height: auto;
     position: absolute;
     left: 0;
-    bottom: -8px;
+    bottom: -12px;
     pointer-events: none
 }
 
@@ -334,7 +334,7 @@ h2 {
 
 .voorstelling-title {
     font-size: 36px;
-    width: 60%;
+    width: 70%;
     font-weight: bold;
 }
 
