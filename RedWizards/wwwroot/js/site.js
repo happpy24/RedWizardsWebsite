@@ -29,24 +29,6 @@ try {
     }
 } catch { }
 
- // Get the modal
- var modal1 = document.getElementById("loginModel");
- var span1 = document.getElementsByClassName("closeLoginModel")[0];
-
- function block() {
-     modal1.style.display = "block";
- }
-
- span1.onclick = function () {
-     modal1.style.display = "none";
- }
-
- window.onclick = function (event) {
-     if (event.target == modal1) {
-         modal1.style.display = "none";
-     }
- }
-
 // Initialize and add the map
 function initMap() {
     // The location of Uluru
