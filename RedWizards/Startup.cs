@@ -67,6 +67,7 @@ namespace RedWizards
 
             app.UseAuthorization();
 
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

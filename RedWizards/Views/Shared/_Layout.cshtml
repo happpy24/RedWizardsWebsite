@@ -21,13 +21,17 @@
                             <li class="nav-item"><a href="/home#content" class="nav-link">Voorstellingen</a></li>
                             <li class="nav-item"><a href="/organisatie" class="nav-link">Over ons</a></li>
                             <li class="nav-item"><a href="/winkelwagen" class="nav-link">Winkelwagen</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Search</a></li>
+                            <li class="nav-item"><a href="#" onclick="myFunction()" class="nav-link">Search</a></li>
                             <li class="nav-item nav-right"><a href="/login"><img class="nav-login" src="~/img/icons/person.png"/></a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
     </header>
+
+    <div class="overlay">
+        <h1 class="bigtitle" id="message">Deze website is alleen goed te zien op een laptop of pc!<br />Schakel over naar een groter scherm als je een betere ervaring wilt hebben!</h1>
+    </div>
     
     <div class="content">
         <main role="main" class="pb-3">
@@ -73,6 +77,11 @@
                 </div>
         </footer>
     </div>
+    <script>
+    function myFunction() {
+        alert("Deze website heeft nog geen zoek functie.\nExcuus voor het ongemak.");
+    }
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

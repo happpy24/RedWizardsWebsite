@@ -104,15 +104,33 @@ body {
     color: #555;
 }
 
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
 
-/* Change navbar styling on small viewports */
-@media (max-width: 991.98px) {
-    .navbar {
-        background: #fff;
-    }
-
-    .navbar .navbar-brand, .navbar .nav-link {
-        color: #555;
+@media (max-width: 1100px) {
+    .overlay {
+        position: fixed; /* Sit on top of the page content */
+        display: inline; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,1); /* Black background with opacity */
+        z-index: 99; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
     }
 }
 
@@ -340,6 +358,13 @@ h2 {
     box-shadow: 10px 10px rgb(0, 0, 0, 0.40);
 }
 
+.containerCoverImgWinkel {
+    max-height: 60%;
+    max-width: 60%;
+    border-radius: 10px;
+    box-shadow: 10px 10px rgb(0, 0, 0, 0.40);
+}
+
 .voorstellingPageTable {
     margin-top: 350px;
     margin-left: 70px;
@@ -349,17 +374,16 @@ h2 {
 
 .movie-container {
     margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    margin-left: 60px;
 }
 
     .movie-container select {
-        background-color: #7B0D1E;
-        color: white;
-        border: 0;
+        background-color: #E5E5E5;
+        color: black;
         border-radius: 5px;
-        font-size: 0.7vw;
-        margin-left: 10px;
-        padding: 5px 15px 5px 15px;
-        border: 2px solid #000000;
+        border: 2px solid #630C12;
         height: 3vw;
         width: 10vw;
     }
@@ -413,10 +437,10 @@ h2 {
     background: rgba(0, 0, 0, 0.1);
     padding: 5px 10px;
     border-radius: 5px;
-    color: #777;
+    color: #fff;
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
     .showcase li {
@@ -448,6 +472,38 @@ h2 {
     font-size: 24px;
     text-align: center;
 }
+
+.payingtext {
+    font-size: 24px;
+    text-align: center;
+    margin: auto;
+}
+
+.paying {
+    max-width: 30%;
+    background: #E5E5E5;
+    padding: 10px;
+    margin: auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 4px solid #630C12;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+    .paying .ticketbutton {
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        border-radius: 20px;
+        margin-left: 10px;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
 
 .orgAlgemeen {
     color: #fff;
@@ -595,6 +651,74 @@ h2 {
                 .form-style ul li input[type="submit"]:hover {
                     background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
                     background-color: #28739E;
+                    transform: scale(1.05);
+                }
+
+.form-style2 {
+    max-width: 60%;
+    background: #E5E5E5;
+    padding: 30px;
+    margin: 20px 0px 0px 60px;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 4px solid #630C12;
+}
+
+    .form-style2 ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        .form-style2 ul li {
+            display: block;
+            margin-bottom: 10px;
+            min-height: 35px;
+        }
+
+            .form-style2 ul li .field-style {
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                padding: 8px;
+                outline: none;
+                border: 1px solid #bbb;
+                -webkit-transition: all 0.30s ease-in-out;
+                -moz-transition: all 0.30s ease-in-out;
+                -o-transition: all 0.30s ease-in-out;
+            }
+
+                .form-style2 ul li .field-style:focus {
+                    box-shadow: 0 0 5px #B0CFE0;
+                    border: 1px solid #B0CFE0;
+                }
+
+            .form-style2 ul li .field-full {
+                width: 100%;
+            }
+
+            .form-style2 ul li textarea {
+                width: 100%;
+                height: 100px;
+            }
+
+            .form-style2 ul li input[type="button"],
+            .form-style2 ul li input[type="submit"] {
+                background-color: #E72B3A;
+                border: 1px solid #E72B3A;
+                cursor: pointer;
+                color: #FFFFFF;
+                border-radius: 20px;
+                width: 100%;
+                margin-left: 0px;
+                text-decoration: none;
+                transition: all .2s ease-in-out;
+            }
+
+                .form-style2 ul li input[type="button"]:hover,
+                .form-style2 ul li input[type="submit"]:hover {
+                    background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+                    background-color: #630C12;
                     transform: scale(1.05);
                 }
 

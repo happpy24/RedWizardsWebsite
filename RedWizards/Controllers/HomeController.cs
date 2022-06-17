@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RedWizards.Database;
 using RedWizards.Models;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace RedWizards.Controllers
 {
@@ -17,10 +19,14 @@ namespace RedWizards.Controllers
 
         public IActionResult Index()
         {
+            ViewData["user"] = HttpContext.Session.GetString("User");
             var voorstellingen = GetAllVoorstellingen();
 
             return View(voorstellingen);
         }
+
+        // █▄▄ ▄▀█ █▀ █ █▀▀
+        // █▄█ █▀█ ▄█ █ █▄▄
 
         [Route("organisatie")]
         public IActionResult Organisatie()
@@ -46,11 +52,32 @@ namespace RedWizards.Controllers
             return View();
         }
 
+        // █░░ █▀█ █▀▀ █ █▄░█
+        // █▄▄ █▄█ █▄█ █ █░▀█
+
         [Route("login")]
-        public IActionResult Login()
+        public IActionResult Login(string username, string password)
         {
+            // hash voor 'wachtwoord'
+            string hash = "dc00c903852bb19eb250aeba05e534a6d211629d77d055033806b783bae09937";
+
+            // is er een wachtwoord ingevoerd?
+            if (!string.IsNullOrWhiteSpace(password))
+            {
+
+                //Er is iets ingevoerd, nu kunnen we het wachtwoord hashen en vergelijken met de hash "uit de database"
+                string hashVanIngevoerdWachtwoord = ComputeSha256Hash(password);
+                if (hashVanIngevoerdWachtwoord == hash)
+                {
+                    HttpContext.Session.SetString("User", username);
+                    return Redirect("/");
+                }
+            }
             return View();
         }
+
+        // █▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀
+        // █▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░
 
         [HttpPost]
         [Route("contact")]
@@ -64,9 +91,12 @@ namespace RedWizards.Controllers
             return View(person);
         }
 
+        // █░█ █▀█ █▀█ █▀█ █▀ ▀█▀ █▀▀ █░░ █░░ █ █▄░█ █▀▀
+        // ▀▄▀ █▄█ █▄█ █▀▄ ▄█ ░█░ ██▄ █▄▄ █▄▄ █ █░▀█ █▄█
+
         public List<Voorstelling> GetAllVoorstellingen()
         {
-            var rows = DatabaseConnector.GetRows("select * from voorstellingen");
+            var rows = DatabaseConnector.GetRows("SELECT voorstellingdata.id, voorraad, name, datum, descShort, descLong, begintijd, eindtijd, img, age, voorstelling_id FROM `voorstellingdata` INNER JOIN voorstellingen ON voorstellingdata.voorstelling_id = voorstellingen.id");
 
             List<Voorstelling> voorstellingen = new List<Voorstelling>();
 
@@ -84,19 +114,31 @@ namespace RedWizards.Controllers
         public Voorstelling GetVoorstelling(int id)
         {
             // voorstelling ophalen uit de database op basis van het id
-            var rows = DatabaseConnector.GetRows($"select * from voorstellingen where id = {id}");
+            var rows = DatabaseConnector.GetRows($"SELECT voorstellingdata.id, voorraad, name, datum, descShort, descLong, begintijd, eindtijd, img, age, voorstelling_id FROM `voorstellingdata` INNER JOIN voorstellingen ON voorstellingdata.voorstelling_id = voorstellingen.id WHERE voorstellingen.id = {id}");
 
             // We krijgen altijd een lijst terug maar er zou altijd één voorstelling in moeten
             // zitten dus we pakken voor het gemak gewoon de eerste
             if (!rows.Any())
                 return null;
 
-            Voorstelling voorstelling = GetVoorstellingFromRow(rows[0]);
+            var row = rows[0];
+
+            // lijst maken om alle producten in te stoppen
+            Voorstelling v = new Voorstelling();
+            v.Name = row["name"].ToString();
+            v.Desc_Short = row["descShort"].ToString();
+            v.Desc_Long = row["descLong"].ToString();
+            v.Datum = row["datum"].ToString();
+            v.Availability = Convert.ToInt32(row["voorraad"]);
+            v.Starting_Time = row["begintijd"].ToString();
+            v.Ending_Time = row["eindtijd"].ToString();
+            v.Age = Convert.ToInt32(row["age"]);
+            v.Id = Convert.ToInt32(row["id"]);
+            v.Img = row["img"].ToString();
 
             // Als laatste sturen het product uit de lijst terug
-            return voorstelling;
+            return v;
         }
-
 
         private Voorstelling GetVoorstellingFromRow(Dictionary<string, object> row)
         {
@@ -106,10 +148,10 @@ namespace RedWizards.Controllers
             v.Desc_Long = row["descLong"].ToString();
             v.Age = Convert.ToInt32(row["age"]);
             v.Img = row["img"].ToString();
-            v.Date = DateTime.Parse(row["date"].ToString());
-            v.Starting_Time = row["startingTime"].ToString();
-            v.Ending_Time = row["endingTime"].ToString();
-            v.Availability = Convert.ToInt32(row["availability"]);
+            v.Datum = row["datum"].ToString();
+            v.Starting_Time = row["begintijd"].ToString();
+            v.Ending_Time = row["eindtijd"].ToString();
+            v.Availability = Convert.ToInt32(row["voorraad"]);
             v.Id = Convert.ToInt32(row["id"]);
 
             return v;
@@ -124,6 +166,24 @@ namespace RedWizards.Controllers
                 return Error();
 
             return View(voorstelling);
+        }
+
+        static string ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                // ComputeHash - returns byte array  
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         [Route("404")]

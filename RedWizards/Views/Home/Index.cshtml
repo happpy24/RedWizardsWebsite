@@ -8,7 +8,10 @@
         <img class="container-img" src=~/img/icon.jpg alt=RWLogo/>
     </div>
     <div class="right-container">
-        <h2 class=titel>Welkom</h2>
+
+        @if (@ViewData["user"] == null) { <h2 class=titel>Welkom</h2> } 
+        else { <h2 class=titel>Welkom, @ViewData["user"]</h2> }
+
         <p class=midtekst>Bij red wizards houden wij er van om magie te aan bezoekers met een kleine prijs. Kom een van onze voorstellingen bekijken door naar onder te scrollen of te klikken op de knop hier onder!</p>
         <a class="button" href="#content">Voorstellingen</a>
         <div class="socialmedia">
@@ -37,7 +40,7 @@
                 </tr>
                 <tr>
                     <td colspan="2"><a class="ticketbutton" href="/voorstelling/@v.Id">Meer info</a></td>
-                    <td class="date">@v.Date.ToString("d")</td>
+                    <td class="date">@v.Datum</td>
                 </tr>
             </table>
             <img class="voorstelling-image" src="@v.Img"/>
